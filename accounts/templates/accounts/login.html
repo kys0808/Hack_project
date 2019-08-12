@@ -1,0 +1,181 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+    * {
+    margin: 0;
+}
+
+a {
+    cursor: pointer;
+}
+
+input:focus, button:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: #FFF;
+    opacity: 0.5;
+    font-family: 'Roboto', sans-serif;
+}
+
+::-ms-input-placeholder {
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+@keyframes bggradient {
+    0% {
+        background-position: 0%
+    }
+    100% {
+        background-position: 100%
+    }
+}
+
+.bgline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    background-color: #000000;
+    background-position: center;
+    box-sizing: border-box;
+    background-size: cover;
+}
+
+.header-logo {
+    width: 100%;
+    height: 100px;
+    float: left;
+    background-color: #000000;
+    margin: 30px 0 0;
+    background-position: center;
+    box-sizing: border-box;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.header-desc {
+    width: 100%;
+    height: 95px;
+    float: left;
+    margin: 25px 0 10px 0;
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+}
+
+.login {
+    height: 100vh;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.login-wrap {
+    background: #000000;
+    width: calc(100% - 140px);
+    padding: calc(50vh - 259px)70px;
+    overflow: auto;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+}
+
+#signinbox {
+    display: block;
+    float: left;
+    margin-bottom: 114px;
+}
+
+@media (max-height: 518px) {
+    #signinbox {
+        margin-bottom: calc((100vh - 404px));
+    }
+}
+
+#signupbox {
+    display: none;
+    float: left;
+}
+
+.inputfield {
+    height: 20px;
+    width: calc(100% - 22px);
+    padding: 10px;
+    font-size: 14px;
+    /*border-radius: 14px;
+    background: rgba(255, 255, 255, 0);*/
+    background: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+    border-bottom: white solid 1px;
+    color: #fff;
+    margin-bottom: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.inputsubmit {
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    background: #000000;
+  border: white solid 1px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.inputsubmit:active {
+    background: #fff;
+    color: #000;
+}
+
+  </style>
+</head>
+<body>
+  <div class="bgline"  style="background-image: url(/static/img/Main.png);"></div>
+<div class="login">
+    <div class="login-wrap">
+        <div class="header-logo" style="background-image: url(/static/img/logo.png);">
+        </div>
+        <div class="header-desc">Beyond a doubt truth bears<br>
+the same relation<br>
+to falsehood as light to darkness.
+        </div>
+        <div id="signinbox">
+            <form method="POST" action="{% url 'accounts:login' %}" id="signinform">
+            {% csrf_token %}
+                <input type = "text" name = "username" class = "inputfield" placeholder = "Username" required/>
+                <input type = "password" name = "password" class = "inputfield" placeholder = "Password" required/>
+                <button id = "loginsubmit" type = "submit" class = "inputsubmit">Sign In</button>
+            {% if form.errors %}
+            <p>로그인실패</p>
+            {% endif %}
+            </form>
+            
+            {# 지우지 마세요 #}
+            <!-- <button onclick="location.href='{% url 'accounts:signup'%}' " id="loginsubmit" class="inputsubmit" style="margin-top:10px;">Create account</button> -->
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

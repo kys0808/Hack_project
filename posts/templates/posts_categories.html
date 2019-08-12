@@ -1,0 +1,608 @@
+{% load staticfiles %}
+<!--등록된 카테고리 출력-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/static/css/style2.css">
+  <link rel="stylesheet" href="/static/css/reset.css">
+  <script src="https://kit.fontawesome.com/2191da7206.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+/*{
+  text-decoration: none;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+a{
+  color: #aaa;
+}
+    #y_nav_drawer{
+      width:35vw;
+      height: 100vh;
+      background-color: #000000;
+      z-index:100;
+      position: fixed;
+      display: inline-block;
+      border: solid #FFFFFF 1px;
+      box-shadow: 1px 1px 9px 1px #FFFFFF
+    }
+
+    /*.y_openbtn{
+      position: fixed;
+      z-index:120;
+      cursor: pointer;
+      z-index: 120;
+      background-color: red;
+      transition: .5s;
+    }*/
+
+    /*#openbtn-top{
+      width: 25px;
+  height: 4px;
+  border-radius: 5px;
+  background: white;
+  transition: .5s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+
+    }
+    #openbtn-mid{
+      width: 25px;
+  height: 4px;
+  border-radius: 5px;
+  background: white;
+  transition: .5s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+
+    }
+    #openbtn-bot{
+      width: 25px;
+  height: 4px;
+  border-radius: 5px;
+  background: white;
+  transition: .5s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+
+    }*/
+  /*  .y_openbtn {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  transition: .5s
+}
+#navInput:checked ~ .y_openbtn {
+  right: 205px
+}
+.y_openbtn div{
+  width: 25px;
+height: 4px;
+border-radius: 5px;
+background: white;
+transition: .5s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+}
+.y_openbtn #openbtn-mid {
+  margin: 4px 0;
+}
+    #navInput {display: none}
+
+  .y_nav_item{
+    width: 100%;
+    display: block;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+
+  }
+
+  #nav{
+      margin-top:50px;
+  }
+
+  a:hover {
+  color: #fff;
+}
+
+
+
+#navInput:checked {
+  transform: translateX(-200px);
+}
+
+#navInput:checked ~ .y_openbtn::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .25);
+}
+
+#navInput:checked ~ .y_openbtn {
+  transform: translateY(4px) rotate(-135deg);
+}
+
+#navInput:checked ~ .y_openbtn{
+  opacity: 0;
+  transform: rotate(135deg);
+}
+
+#navInput:checked ~ .y_openbtn{
+  transform: translateY(-12px) rotate(-45deg);
+}
+*/
+#main{
+  transition: transform .5s;
+}
+html, body {
+  margin: 0;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+a:hover {
+  color: #aaa;
+}
+#navInput {display: none}
+#navInput:checked ~ #main {
+  transform: translateX(500px);
+}
+
+.openbtn {
+
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+  transition: .5s;
+}
+.openbtn div {
+  width: 25px;
+  height: 4px;
+  border-radius: 5px;
+  background: #FFF;
+  transition: .5s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+  z-index: 100;
+}
+.openbtn #openbtn-mid {
+  margin: 4px 0;
+}
+
+#navInput:checked ~ .openbtn {
+  left: 505px;
+}
+
+#navInput:checked ~ .openbtn::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .25);
+}
+#navInput:checked ~ .openbtn #openbtn-top {
+  z-index: 100;
+  transform: translateY(4px) rotate(-135deg)
+}
+#navInput:checked ~ .openbtn #openbtn-mid {
+  z-index: 100;
+  opacity: 0;
+  transform: rotate(135deg)
+}
+#navInput:checked ~ .openbtn #openbtn-bot {
+  z-index: 100;
+  transform: translateY(-12px) rotate(-45deg)
+}
+
+#nav {
+  position: fixed;
+  top: 0;
+  left: -500px;
+  width: 500px;
+  height: 100%;
+  padding: 30px 10px;
+  background: #000000;
+  transition: .5s;
+  z-index: 10;
+}
+#navInput:checked ~ #nav {
+  transform: translateX(500px)
+}
+
+#nav a {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(100, 100, 100, .5);
+  transition: padding-left .5s
+
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#nav a:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0
+}
+
+#nav a:hover {
+  padding-left: 5px
+}
+
+#y_main{
+  transition: transform .5s;
+}
+html, body {
+  margin: 0;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+a:hover {
+  color: #aaa;
+}
+#y_navInput {display: none}
+#y_navInput:checked ~ #main {
+  transform: translateX(-500px);
+}
+
+.y_openbtn {
+  z-index:100;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  transition: .5s;
+}
+.y_openbtn div {
+  width: 25px;
+  height: 4px;
+  border-radius: 5px;
+  background: #000;
+  transition: .5s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+  z-index: 100;
+}
+.y_openbtn #openbtn-mid {
+  margin: 4px 0;
+}
+
+#y_navInput:checked ~ .y_openbtn {
+  right: 360px;
+
+}
+
+#y_navInput:checked ~ .y_openbtn::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .25);
+}
+
+
+#y_nav {
+  position: fixed;
+  top: 0;
+  right: -500px;
+  width: 400px;
+  height: 100%;
+  padding: 30px 10px;
+  background: b;
+  transition: .5s;
+  z-index: 10;
+  background-color: black;
+}
+
+#y_navInput:checked ~ #y_nav {
+  transform: translateX(-500px)
+}
+
+#y_nav a {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(100, 100, 100, .5);
+  transition: padding-left .5s
+
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#y_nav a:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0
+}
+
+#y_nav a:hover {
+  padding-left: 5px
+
+}
+i{
+  color: #FFFFFF;
+}
+
+.p-item:hover {
+  color: #aaa;
+}
+#p-navInput {display: none}
+#p-navInput:checked ~ #p-main {
+  transform: translateX(-500px);
+}
+
+.p-openbtn {
+
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  transition: .5s;
+}
+.p-openbtn div {
+  width: 25px;
+  height: 4px;
+  border-radius: 5px;
+  background: #FFF;
+  transition: .5s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+  z-index: 100;
+}
+.p-openbtn #p-openbtn-mid {
+  margin: 4px 0;
+}
+
+#p-navInput:checked ~ .p-openbtn {
+  right: 505px;
+}
+
+#p-navInput:checked ~ .p-openbtn::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .25);
+}
+#p-navInput:checked ~ .p-openbtn #p-openbtn-top {
+  z-index: 100;
+  transform: translateY(4px) rotate(-135deg)
+}
+#p-navInput:checked ~ .p-openbtn #p-openbtn-mid {
+  z-index: 100;
+  opacity: 0;
+  transform: rotate(135deg)
+}
+#p-navInput:checked ~ .p-openbtn #p-openbtn-bot {
+  z-index: 100;
+  transform: translateY(-12px) rotate(-45deg)
+}
+
+#p-nav {
+  position: fixed;
+  top: 0;
+  right: -500px;
+  width: 500px;
+  height: 100%;
+  padding: 30px 10px;
+  background: #000000;
+  transition: .5s;
+  z-index: 10;
+}
+#p-navInput:checked ~ #p-nav {
+  transform: translateX(-500px)
+}
+
+#p-nav .p-item {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(100, 100, 100, .5);
+  transition: padding-right .5s
+
+}
+.p-item {
+  color: #fff;
+  text-decoration: none;
+}
+
+#p-nav .p-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0
+}
+
+#p-nav .p-item:hover {
+  padding-left: 5px
+}
+
+  </style>
+
+</head>
+<body>
+    <input type="checkbox" id="p-navInput">
+
+    <label class="p-openbtn" for="p-navInput">
+      <i class="fas fa-user fa-2x" style="color: white;"></i>
+    </label>
+  
+
+
+
+  <nav id="p-nav">
+    <div class="d_profile">
+    {% if user.profile_image%}
+        <div class="d_profile_image" style="text-align:center;"><img style="width:150px;height:150px;border-radius:75px;text-align:center;margin:0 auto;" src="{{ user.profile_image.url}}"></div>
+    {%else%}
+        <div class="d_profile_image" style="text-align:center;"><img style="width:150px;height:150px;border-radius:75px;text-align:center;margin:0 auto;" src="{% static 'img/cutedog.jpg' %}" alt=""></div>
+    {% endif%}
+    <div class="user_nickname" style="color:white; font-family: 'Lato'; font-weight:bold; font-size:25px; text-align: sans-serif; text-align: center;">{{user.name}}</div>
+    <div class="user_email" style="color:white;text-align: center; font-size:15px;">{{user.email}}</div>
+    <div class="user_" style="color:white;text-align: center; font-size:15px;">
+
+      {% if user.is_expert %}
+      전문가
+      {% else%}
+      학생
+      {% endif%}
+      </div>
+    </div>
+<br>
+
+    <hr color="white">
+    
+    <div class="nav_mypage">
+        <div class="d_questions"><a class="p-item" href="#" style="font-weight:700; margin-left:20px; margin-top:17px;">My Questions</a></div>
+        <br>
+        <div class="d_answers"><a class="p-item" href="#" style="font-weight:700; margin-left:20px">My Answers</a></div>
+        <br>
+        <div class="d_bookmark"><a class="p-item" href="#" style="font-weight:700; margin-left:20px">Book Marks</a></div>
+        <br>
+        <div class="d_account"><a class="p-item" href="{% url 'accounts:user_update' %}" style="font-weight:700; margin-left:20px">My Account</a></div>
+       </div>
+       <br>
+       <br>
+       <br>
+       <br>
+       <div class="d_logout"><a class="p-item" href="{% url 'accounts:logout' %}" style="font-weight:700; text-align: right; margin-right:20px; margin-bottom:17px;">Logout</a></div>
+   
+       <hr color="white">
+  </nav>
+
+<input type="checkbox" id="navInput">
+<div id="main">
+</div>
+<label class="openbtn" for="navInput">
+  <div id="openbtn-top"></div>
+  <div id="openbtn-mid"></div>
+  <div id="openbtn-bot"></div>
+</label>
+<nav id="nav">
+    <a href="{% url 'posts:posts_home'%}"><h1>Home</h1></a>
+    {% for category in categories%}
+    {% if category.parent is not None and category.name == 'open'%}
+        <a href="{% url 'posts:posts_list' category.name category.slug%}">
+        {{category.parent}}
+        </a>
+    {% endif %}
+    {% endfor %}
+</nav>
+
+
+
+  <div id="y_main_img">
+    <div id="y_nav_section"></div>
+    <div id="y_logo_section">
+      <div class="y_logo"></div>
+    </div>
+    <div id="y_desc_section">
+      <div class="y_desc">Beyond a doubt truth bears the same relation </br>
+to falsehood as light to darkness.</div>
+    </div>
+    <div id="y_search_section">
+      <div id="y_search_set">
+        <div class="y_searchbar">
+        <!--search form-->
+
+<form method="get" action="{% url 'posts:posts_search'%}">
+<p>
+<input type="text" name="q" id="id_q" value="{{ query }}" />
+  <select name="categoryslug">
+    {% for category in categories %}
+    {% if category.parent is not None%}
+        <option value="{{category.slug}}">
+        {% if category.name == 'open'%}
+        {{category.parent}}'s openboard
+        {% endif%}
+        {% if category.name == 'pro'%}
+        {{category.parent}}'s professionalboard
+        {% endif%}
+        </option>
+    {% endif%}
+  {% endfor %}  
+  </select>
+  <input type="submit" value="Submit" /></p>
+</form >
+<!--search form end-->
+        </div>
+        <div class="y_searchicon"></div>
+      </div>
+    </div>
+    <div id="y_subs_section">
+    <div id="y_sub_wrapper">
+
+    {% for category in categories%}
+    {% if category.parent is not None and category.name == 'open'%}
+      <div class="y_sub_container">    
+        <a href="{% url 'posts:posts_list' category.name category.slug%}">
+            <div class="y_sub1"></div>
+            <div class="y_sub2">{{category.parent}}<br>Science</div>
+        </a>
+      </div>
+    {% endif %}
+    {% endfor %}
+    
+
+      <!-- <div class="y_sub_container">
+        <a href="#">
+            <div class="y_sub1"></div>
+            <div class="y_sub2">Computer<br>Science</div>
+        </a>
+      </div>
+
+      <div class="y_sub_container">
+        <a href="#">
+            <div class="y_sub1"></div>
+            <div class="y_sub2">Computer<br>Science</div>
+        </a>
+      </div>
+
+      <div class="y_sub_container">
+        <a href="#">
+            <div class="y_sub1"></div>
+            <div class="y_sub2">Computer<br>Science</div>
+        </a>
+      </div>
+
+      <div class="y_sub_container">
+        <a href="#">
+            <div class="y_sub1"></div>
+            <div class="y_sub2">Computer<br>Science</div>
+        </a>
+      </div>
+
+      <div class="y_sub_container">
+        <a href="#">
+            <div class="y_sub1"></div>
+            <div class="y_sub2">Computer<br>Science</div>
+        </a>
+      </div>
+
+      <div class="y_sub_container">
+        <a href="#">
+            <div class="y_sub1"></div>
+            <div class="y_sub2">Computer<br>Science</div>
+        </a>
+      </div> -->
+</div>
+
+      </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!--
+<a href="#"><h1> Demoon </h1></a>
+<br> <br>
+
+<p> 로그인 하세요! </p>
+<a href="{% url 'accounts:login'%}"><p> 로그인</p></a> <br>
+<a href="{% url 'accounts:signup'%}"><p>회원가입</p></a> <br>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+
+
+body{
+  background: #000;
+  display: flex;
+  text-align: center;
+}
+
+.main{
+  position:fixed;
+  top:0;
+  left:0;
+  background-image:url(/static/img/starry.jpg);
+  -webkit-background-size:/*@@prefixmycss->No equivalent*/;
+  -moz-background-size:cover;
+  -o-background-size:/*@@prefixmycss->No equivalent*/;
+  background-size:cover;
+  display:block;
+  width:100%;
+  height:100%;
+
+}
+
+.light{
+  font-size: 1rem;
+  font-family: 'Lato', sans-serif;
+  margin: 0 auto;
+  margin-top: 5vh;
+
+}
+
+.light div{
+  display: block;
+  vertical-align: center;
+  animation: animate 20s ease-in-out 1;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  color: #111;
+}
+.logo{
+  display: block;
+  vertical-align: center;
+  animation: animate 20s ease-in-out 1;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  color: #111;
+}
+
+
+
+.light div:nth-child(1){
+  animation-delay: 0s;
+}
+.light div:nth-child(2){
+  animation-delay: .25s;
+}
+.light div:nth-child(2){
+  animation-delay: .5s;
+}
+.light div:nth-child(3){
+  animation-delay: .75s;
+}
+.light div:nth-child(4){
+  animation-delay: 1.25s;
+}
+.light div:nth-child(5){
+  animation-delay: 1.25s;
+}
+.light div:nth-child(6){
+  animation-delay: 1.5s;
+}
+.light div:nth-child(7){
+  animation-delay: 1.75s;
+}
+
+
+
+
+@keyframes animate {
+20%, 100%{
+    color: #fff;
+    text-shadow: 0 0 5px #fff,
+      0 0 20px #fff,
+      0 0 40px #fff,
+      0 0 80px #fff,
+      0 0 120px #fff,
+      0 0 200px #fff,
+      0 0 300px #fff,
+      0 0 400px #fff;
+  }
+}
+
+button {
+  margin: 12px;
+}
+.btn-default {
+  background-color: #000;
+  color: #000;
+}
+.btn-primary {
+  background-color:
+    #000;
+  color: #000;
+}
+
+@keyframes glowing {
+  0% { box-shadow: 0 0 -10px #fff; }
+  40% { box-shadow: 0 0 20px #fff; }
+  60% { box-shadow: 0 0 20px #fff; }
+  100% { box-shadow: 0 0 -10px #fff; }
+}
+
+.button-glow {
+  animation: glowing 5000ms infinite;
+}
+  </style>
+</head>
+<body>
+
+<div class="main">
+
+  <div class="logo" style=" background-image: url(/static/img/logo.png); background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  background-size: contain;width:20%; height: 80px; margin: 0 auto;   margin-top: 20vh;"></div>
+
+  <div class="light">
+  <div>의심의 저편에서 진리가 탄생하는 이치는</div>
+  <br>
+  <div>어둠에서 빛이 탄생하는 허위의 이치와</div>
+  <br>
+  <div>같은 관계를 가지고 있다.</div>
+  <br>
+  <button type="button" class="btn btn-lg btn-link button-glow" style="width:20%; height: 40px;  border-radius: 3px; background: transparent; color:#fff;"><a href="{% url 'accounts:login'%}" style="color:#fff; text-decoration:none;" >Log in</a></button>
+  <br>
+    <button type="button" class="btn btn-lg btn-link button-glow" style="width:20%; height:40px;  border-radius: 3px; background: transparent; color:#fff;"><a href="{% url 'accounts:signup'%}" style="color:#fff; text-decoration:none;">Create Account</a></button>
+
+</div>
+</body>
+</html>

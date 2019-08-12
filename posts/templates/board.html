@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+
+  html, body, div, article, section, header,
+  h1, h2, h3, h4, h5, h6,
+  ul, li, ol, p, img {
+    margin:0;
+    padding:0;
+  }
+
+  img {
+    border:none;
+  }
+
+
+* {box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+font-family: 'Lato', sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: black;
+  height: 7vh;
+}
+
+
+.topnav a {
+  float: left;
+  display: inline-block;
+  text-align: center;
+  padding: 14px 16px;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+    opacity:1;
+}
+
+.topnav .search-container {
+  float: left;
+  margin-left: 20px;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  background: rgba(255, 255, 255, 0);
+  outline: none;
+  border: none;
+  border-bottom: white solid 1px;
+  color: #fff;
+}
+
+.topnav .search-container label {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.topnav .search-container label:hover {
+   opacity:1;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+
+  }
+}
+
+.nav_item{
+  opacity:0.7;
+}
+
+
+
+.searchsubmit {
+  margin-top: 8px;
+    height: 40px;
+  display: inline-block;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    background: #000000;
+  border: white solid 1px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    overflow: hidden;
+      border: white solid 1px;
+}
+
+.y-searchsubmit {
+  width: 120px;
+    height: 40px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 100px;
+    display: inline-block;
+    float: right;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    background: #000000;
+  border: white solid 1px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    position: rel ative;
+    overflow: hidden;
+
+}
+.y-searchsubmit:active{
+  background: #fff;
+  color: black;
+}
+.cate-photo{
+  margin-left: 100px;
+    display: inline-block;
+    float: left;
+
+}
+.cate-name{
+font-family: 'Lato', sans-serif;
+font-size: 45px;
+font-weight: 900 bold ;
+color: white;
+float: left;
+margin-left: 50px;
+margin-top:30px;
+
+}
+
+
+
+
+/*
+.menubar{
+border:none;
+border:0px;
+margin:0px;
+padding:0px;
+font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+}
+
+.menubar ul{
+background: black;
+height:50px;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menubar li{
+float:left;
+padding:0px;
+}
+
+.menubar li a{
+background: black;
+color:#cccccc;
+display:block;
+font-weight:normal;
+line-height:50px;
+margin:0px;
+padding:0px 25px;
+text-align:center;
+text-decoration:none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+background: black;
+color:#FFFFFF;
+text-decoration:none;
+}
+
+.menubar li ul{
+background: black;
+display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+height:auto;
+padding:0px;
+margin:0px;
+border:0px;
+position:absolute;
+width:100px;
+z-index:200;
+/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul{
+display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li {
+background: black;
+display:block;
+float:none;
+margin:0px;
+padding:0px;
+width:200px;
+}
+
+.menubar li:hover li a{
+background:none;
+}
+
+.menubar li ul a{
+display:block;
+width:200px;
+height:50px;
+font-size:12px;
+font-style:normal;
+margin:0px;
+padding:0px 10px 0px 15px;
+text-align:left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+background: black;
+border:0px;
+color:#ffffff;
+text-decoration:none;
+}
+
+.menubar p{
+clear:left;
+}*/
+</style>
+</head>
+<body>
+  <div class="cate-Title" style="width:100%; height:30vh; background-image:url(img/Main.png); background-size: cover; background-position: center; background-repeat: no-repeat; padding-top:50px; ">
+  <div class="cate-photo" style="width:120px; height:120px; box-shadow: 1px 1px 20px 1px #FFFFFF; border-radius: 50%;"></div>
+  <div class="cate-name" style="">Computer Science</div>
+  </div>
+  <div class="topnav" style="width: 100%; box-shadow: 1px 1px 20px 1px #FFFFFF; bow-radius: 50%;">
+    <a href="{% url 'posts:posts_list' 'open' opencategory.slug %}" style="color:#fff; margin-left:100px;" class="nav_item">Open Board</a>
+      <a href="{% url 'posts:posts_list' 'pro' procategory.slug %}" style="color:#fff;" class="nav_item">Professional Board</a>
+    <div class="search-container" >
+      <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <label type="submit"><i class="fa fa-search" style="color:white;"></i></label>
+      </form>
+    </div>
+    <button onclick=" location.href='{% url 'posts:posts_new' %}' " id="y-searchsubmit" type="submit" class="y-searchsubmit" style=" text-align:center;">Ask Question</button>
+  </div>
+
+  <!--<div class="menubar">
+  <ul>
+   <li><a href="#" id="current">Filter</a>
+  	<ul>
+       <li><a href="#">Computer Science</a></li>
+       <li><a href="#">Computer Science-Pro</a></li>
+      </ul>
+   </li>
+ </ul>
+  </div>-->
+
+
+</body>
+</html>

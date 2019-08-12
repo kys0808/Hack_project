@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'posts:posts_home'%}"><h1>daemoon</h1></a><br>
+    <h1>답변하기</h1> <br>
+
+    <p>질문내용</p>
+    <p>제목: {{post.title}}</p> <br>
+    <p>본문: {{post.body|safe}} </p>
+
+    <form method="POST" class="post-form" >{% csrf_token %}
+        {{form.media}}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">답변하기</button>
+    </form>
+
+{% endblock %}
+
+

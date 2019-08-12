@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for post in posts%}
+<a href="{% url 'posts:posts_detail' post.id %}"><h1> {{post.title}} </h1> </a>
+{% endfor%}
+
+
+
+<!-- 페이지 네이터-->
+{%if posts.has_previous%}
+<a href="?page=1">First</a>
+<a href="?page={{posts.previous_page_number}}">이전</a>
+{%endif%}
+
+<span>{{posts.number}}</span>
+<span>of</span>
+<span>{{posts.paginator.num_pages}}</span>
+
+{%if posts.has_next%}
+<a href="?page={{posts.next_page_number}}">다음</a>
+<a href="?page={{posts.paginator.num_pages}}">마지막</a>
+{%endif%}
+<!--페이지 네이터 부분끝-->
+
+{% endblock %}

@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 예은 html 헤드-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://kit.fontawesome.com/2191da7206.js"></script>
+    <!--예은 헤드 -->
+</head>
+
+<body>
+    <div class="cate-Title" style="width:100%; height:30vh; background-image:url(img/Main.png); background-size: cover; background-position: center; background-repeat: no-repeat; padding-top:50px; ">
+    <div class="cate-photo" style="width:120px; height:120px; box-shadow: 1px 1px 20px 1px #FFFFFF; border-radius: 50%;"></div>
+    <div class="cate-name" style="">Computer Science</div>
+    </div>
+    <div class="topnav" style="width: 100%; box-shadow: 1px 1px 20px 1px #FFFFFF; bow-radius: 50%;">
+        <a href="{% url 'posts:posts_list' 'open' opencategory.slug %}" style="color:#fff; margin-left:100px;" class="nav_item">Open Board</a>
+          <a href="{% url 'posts:posts_list' 'pro' procategory.slug %}" style="color:#fff;" class="nav_item">Professional Board</a>
+        <div class="search-container" >
+          <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <label type="submit"><i class="fa fa-search" style="color:white;"></i></label>
+          </form>
+        </div>
+        <button id="y-searchsubmit" type="submit" class="y-searchsubmit" style=" text-align:center;">Ask Question</button>
+      </div>
+  
+    <!--<div class="menubar">
+    <ul>
+     <li><a href="#" id="current">Filter</a>
+      <ul>
+         <li><a href="#">Computer Science</a></li>
+         <li><a href="#">Computer Science-Pro</a></li>
+        </ul>
+     </li>
+   </ul>
+    </div>-->
+  
+  
+  </body>
+
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:700|Oswald' rel='stylesheet' type='text/css'>
+<!-- 서브네브-->
+<a href="{% url 'posts:posts_home'%}"><h1>daemoon</h1></a><br>
+
+<a href="{% url 'posts:posts_new' %}"><p> 글 쓰기 </p> </a>
+<a href="{% url 'posts:posts_list' 'open' opencategory.slug %}"><p> openboard </p></a>
+<a href="{% url 'posts:posts_list' 'pro' procategory.slug %}"> <p>professional board</p> </a>
+
+
+
+<!--search form-->
+
+<form method="get" action="{% url 'posts:posts_search'%}">
+<p>
+<input type="text" name="q" id="id_q" value="{{ query }}" />
+  <select name="categoryslug">
+    {% for category in categories %}
+    {% if category.parent is not None%}
+        <option value="{{category.slug}}">
+        {% if category.name == 'open'%}
+        {{category.parent}}'s openboard
+        {% endif%}
+        {% if category.name == 'pro'%}
+        {{category.parent}}'s professionalboard
+        {% endif%}
+        </option>
+    {% endif%}
+  {% endfor %}  
+  </select>
+  <input type="submit" value="Submit" /></p>
+</form >
+<!--search form end-->
+<!-- 서브네브 끝부분-->
+
+
+<!-- list 부분-->
+<section id="postIndex" class="widthWrapper">
+
+    {% for post in posts %}
+    <article>
+      <a target="_self" href="{% url 'posts:posts_detail' post.id %}">
+
+        <div class="p_cate_date" style="width:100%; height:20% display: inline-block; overflow: hidden;     margin-bottom: 1vh">
+          <div class="p_cate" style="width: 100px; height: 100%; display: inline-block; color: #EAEAEA;border-right: solid 1px white; ">{{post.category.parent}}</div>
+          <div class="p_date"style="width: 300px; height: 100%; display: inline-block; color: #EAEAEA;margin-left:15px;">{{post.created_at}}</div>
+        </div>
+        <div class="p_title"  style=" float: left;">
+          <h2> {{post.title}}</h2>
+        </div>
+        <div class="p_info" style="width:100%; height:20%; display: inline-block; overflow: hidden;">
+          <div class="p_viewed" style="width: 120px; height: 100%; display: inline-block; color: #F55050; margin-top:3vh; border-right: solid 1px white;"><i class="fas fa-heart" style="color: #F55050; margin-right: 5px;"></i>{{post.total_likes}} likes</div>
+          <div class="p_viewed" style="width: 150px; height: 100%; display: inline-block; color: #7DADEF; margin-top:3vh; margin-left:15px;"><i class="fas fa-comment" style="color: #7DADEF; margin-right: 5px;"></i> {{post.comments_count}}commented</div>
+        </div>
+      </a>
+    </article>
+    {% endfor%}
+
+<!-- list 끝부분 -->
+
+ </section>
+<!-- 페이지 네이터-->
+{%if posts.has_previous%}
+<a href="?page=1">First</a>
+<a href="?page={{posts.previous_page_number}}">이전</a>
+{%endif%}
+
+<span>{{posts.number}}</span>
+<span>of</span>
+<span>{{posts.paginator.num_pages}}</span>
+
+{%if posts.has_next%}
+<a href="?page={{posts.next_page_number}}">다음</a>
+<a href="?page={{posts.paginator.num_pages}}">마지막</a>
+{%endif%}
+<!--페이지 네이터 부분끝-->
+
+
+<style>
+  /* Basic CSS Reset */
+  html, body, div, article, section, header,
+  h1, h2, h3, h4, h5, h6,
+  ul, li, ol, p, img {
+    margin:0;
+    padding:0;
+  }
+
+  img {
+    border:none;
+  }
+
+  /* Global Styles */
+  body {
+    background: #0F0F0F;
+    line-height: 1.55;
+    font-size: 100%;
+    font-weight: 400;
+    font-family: helvetica, arial, sans-serif;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.55em;
+    padding-bottom: .35em;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    font-weight: 400;
+  }
+
+  .widthWrapper {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  /* Post Index */
+  #postIndex {
+    margin: 3em auto;
+  }
+
+  article {
+    margin-top: -0.063em;
+  }
+
+  article a {
+    display: block;
+    padding: 2.374em 2.5em 2.5em 2.5em;
+    overflow: hidden;
+    border-top: .063em solid #ccc;
+    border-bottom: .063em solid #ccc;
+  }
+
+  article a:hover {
+    background: #21252B;
+    border-top: #666 solid .063em;
+    padding: 2.187em 2.5em 2.5em 2.5em;
+  }
+
+  .postImg {
+    float: left;
+    width: 25%;
+    box-sizing: border-box;
+    padding-right: 2em;
+  }
+
+  .postImg img {
+    width: 100%;
+  }
+
+  article a h2 {
+    color: #fff;
+    float: right;
+    width: 100%;
+  }
+
+  article a:hover h2 {
+    color: #157EBF;
+  }
+
+  article a p {
+    color: #EAEAEA;
+    float: right;
+    width: 100%;
+  }
+
+  article a:hover p {
+    color: #222;
+  }
+
+
+    article a:hover p {
+      color: #222;
+    }
+
+
+
+  @media only screen and (max-width: 750px) {
+    #postIndex {
+      width: 100%;
+    }
+
+    article a {
+      padding: 2.374em 1.5em 2.5em 1.5em;
+    }
+
+    article a:hover {
+      padding: 2.187em 1.5em 2.5em 1.5em;
+    }
+  }
+
+  @media only screen and (max-width: 481px) {
+    .postImg {
+      display: none;
+    }
+
+    article a p, article a h2 {
+      width: 100%;
+    }
+
+  }
+
+/* 여기서부터 해시태그에 관한 스타일링 .... 집에 가고 싶은 불상한 예으니 ㅜㅜ*/
+.tags{
+margin:0;
+padding:0;
+list-style:none;
+}
+
+.tags .y-li, .tags .y-tag{
+float:left;
+height:24px;
+line-height:24px;
+position:relative;
+font-size:11px;
+}
+
+.tags .y-tag{
+font-family: "Open Sans", sans-serif;
+margin-left:20px;
+padding:0 10px 0 12px;
+background:#76B4FF;
+color:#fff;
+text-decoration:none;
+-moz-border-radius-bottomright:4px;
+-webkit-border-bottom-right-radius:4px;
+border-bottom-right-radius:4px;
+-moz-border-radius-topright:4px;
+-webkit-border-top-right-radius:4px;
+border-top-right-radius:4px;
+}
+
+.tags .y-tag:before{
+content:"";
+float:left;
+position:absolute;
+top:0;
+left:-12px;
+width:0;
+height:0;
+border-color:transparent #76B4FF transparent transparent;
+border-style:solid;
+border-width:12px 12px 12px 0;
+}
+
+.tags .y-tag:after{
+
+position:absolute;
+top:10px;
+left:0;
+float:left;
+width:4px;
+height:4px;
+-moz-border-radius:2px;
+-webkit-border-radius:2px;
+border-radius:2px;
+background:#fff;
+-moz-box-shadow:-1px -1px 2px #004977;
+-webkit-box-shadow:-1px -1px 2px #004977;
+box-shadow:-1px -1px 2px #004977;
+}
+
+.tags .y-tag:hover {
+background:#0089e0;
+}
+
+.tags .y-tag:hover:before {
+border-color:transparent #0089e0 transparent transparent;
+}
+
+
+
+
+</style>
+{% endblock %}
